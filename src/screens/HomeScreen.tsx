@@ -1,9 +1,20 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Image, Text, View} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {styles} from '../theme/styles';
 export const HomeScreen = () => {
+  const {top} = useSafeAreaInsets();
+
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Home!</Text>
-    </View>
+    <>
+      <Image
+        source={require('../assets/assets/pokebola.png')}
+        style={styles.pokebolaBG}
+      />
+
+      <View style={{...styles.pkdContainer}}>
+        <Text style={{...styles.pkdTitle, top: top + 20}}>Pokedex</Text>
+      </View>
+    </>
   );
 };
