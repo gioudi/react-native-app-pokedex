@@ -45,5 +45,6 @@ export const usePokemonPaginate = () => {
   return {
     isLoading,
     payloadPokemon,
+    loadPokemons,
   };
 };
