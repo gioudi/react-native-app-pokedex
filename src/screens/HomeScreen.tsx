@@ -5,7 +5,8 @@ import {usePokemonPaginate} from '../hooks/usePokemonPaginate';
 import {styles} from '../theme/styles';
 export const HomeScreen = () => {
   const {top} = useSafeAreaInsets();
-  usePokemonPaginate();
+  const {payloadPokemon} = usePokemonPaginate();
+  console.log(payloadPokemon);
   return (
     <>
       <Image
