@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Text,
   View,
@@ -10,6 +10,7 @@ import {
 import {PayloadPokemon} from '../interfaces/pokemonInterfaces';
 import {FadeInImage} from './FadeInImage';
 import ImageColors from 'react-native-image-colors';
+import {useNavigation} from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -18,16 +19,24 @@ interface Props {
 }
 
 export const PokemonCard = ({pokemon}: Props) => {
+  const navigation = useNavigation();
   const [BgColor, setBgColor] = useState('#B6B6B6');
-
+  const isMounted = useRef(true);
   useEffect(() => {
     getColorsPokemons();
+
+    return () => {
+      isMounted.current = false;
+    };
   }, []);
 
   const getColorsPokemons = async () => {
     const getColorPokemon = await ImageColors.getColors(pokemon.picture, {
       fallback: '#228B22',
     });
+    if (!isMounted.current) {
+      return;
+    }
     switch (getColorPokemon.platform) {
       case 'android':
         setBgColor(getColorPokemon.dominant);
@@ -44,7 +53,14 @@ export const PokemonCard = ({pokemon}: Props) => {
   };
 
   return (
-    <TouchableOpacity activeOpacity={0.7}>
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={() =>
+        navigation.navigate('DetailScreen', {
+          payloadPokemon: pokemon,
+          color: BgColor,
+        })
+      }>
       <View
         style={{
           ...styles.pkdCardContainer,
