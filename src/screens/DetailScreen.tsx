@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {FadeInImage} from '../components/FadeInImage';
 import {usePokemon} from '../hooks/usePokemon';
+import {PokemonDetail} from '../components/PokemonDetail';
 
 interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> {}
 
@@ -20,7 +21,7 @@ export const DetailScreen = ({navigation, route}: Props) => {
   const {payloadPokemon, color} = route.params;
   const {name, id, picture} = payloadPokemon;
   const top = useSafeAreaInsets();
-  const {pokemon, isLoading} = usePokemon;
+  const {pokemon, isLoading} = usePokemon(id);
   return (
     <View style={{flex: 1}}>
       {/* Header */}
@@ -53,13 +54,13 @@ export const DetailScreen = ({navigation, route}: Props) => {
         />
 
         {/* Body */}
-
-        <View style={{...styles.pkdDetailContainer__Load}}>
-          <ActivityIndicator color={color} size={50} />
-        </View>
-        <View>
-          <Text>{pokemon}</Text>
-        </View>
+        {isLoading ? (
+          <View style={{...styles.pkdDetailContainer__Load}}>
+            <ActivityIndicator color={color} size={50} />
+          </View>
+        ) : (
+          <PokemonDetail payload={pokemon} />
+        )}
       </View>
     </View>
   );

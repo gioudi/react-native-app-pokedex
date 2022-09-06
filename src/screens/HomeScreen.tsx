@@ -7,7 +7,7 @@ import {styles} from '../theme/styles';
 export const HomeScreen = () => {
   const {top} = useSafeAreaInsets();
   const {payloadPokemon, loadPokemons} = usePokemonPaginate();
-  console.log(payloadPokemon);
+
   return (
     <>
       <Image
