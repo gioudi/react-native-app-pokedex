@@ -85,6 +85,39 @@ export const PokemonDetail = ({payload}: Props) => {
             ))}
           </View>
         </View>
+        <View>
+          <Text style={{...styles.pkdContainer__Detail_Title}}>Stats:</Text>
+          <View style={{}}>
+            {payload.stats.map((stat, i) => (
+              <View key={stat.stat.name + i} style={{flexDirection: 'row'}}>
+                <Text
+                  style={{
+                    ...styles.pkdContainer__Detail_Regular,
+                    marginRight: 10,
+                    width: 150,
+                  }}
+                  key={stat.stat.name}>
+                  {stat.stat.name}
+                </Text>
+                <Text
+                  style={{
+                    ...styles.pkdContainer__Detail_Regular,
+                    fontWeight: '600',
+                  }}>
+                  {stat.base_stat}
+                </Text>
+              </View>
+            ))}
+          </View>
+        </View>
+
+        {/* Sprite Final */}
+        <View style={{marginBottom: 20, alignItems: 'center'}}>
+          <FadeInImage
+            uri={payload.sprites.front_default}
+            style={{...styles.pkdContainer__Detail_sprite}}
+          />
+        </View>
       </View>
     </ScrollView>
   );

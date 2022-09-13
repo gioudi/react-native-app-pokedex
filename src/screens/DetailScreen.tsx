@@ -52,16 +52,15 @@ export const DetailScreen = ({navigation, route}: Props) => {
           uri={picture}
           style={{...styles.pkdDetailContainer__Pokemon}}
         />
-
-        {/* Body */}
-        {isLoading ? (
-          <View style={{...styles.pkdDetailContainer__Load}}>
-            <ActivityIndicator color={color} size={50} />
-          </View>
-        ) : (
-          <PokemonDetail payload={pokemon} />
-        )}
       </View>
+      {/* Body */}
+      {isLoading ? (
+        <View style={{...styles.pkdDetailContainer__Load}}>
+          <ActivityIndicator color={color} size={50} />
+        </View>
+      ) : (
+        <PokemonDetail payload={pokemon} />
+      )}
     </View>
   );
 };
