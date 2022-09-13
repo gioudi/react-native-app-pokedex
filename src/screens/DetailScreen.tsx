@@ -1,9 +1,15 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-export const DetailScreen = () => {
+import {StackScreenProps} from '@react-navigation/stack';
+import {RootStackParams} from '../navigator/IndexNavigator';
+
+interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> {}
+
+export const DetailScreen = ({navigation, route}: Props) => {
+  const {payloadPokemon, color} = route.params;
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Detail!</Text>
+      <Text>{payloadPokemon.name}</Text>
     </View>
   );
 };

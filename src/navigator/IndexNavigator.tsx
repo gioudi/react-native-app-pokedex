@@ -2,8 +2,14 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {DetailScreen} from '../screens/DetailScreen';
 import {HomeScreen} from '../screens/HomeScreen';
+import {PayloadPokemon} from '../interfaces/pokemonInterfaces';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParams = {
+  HomeScreen: undefined;
+  DetailScreen: {payloadPokemon: PayloadPokemon; color: string};
+};
+
+const Stack = createNativeStackNavigator<RootStackParams>();
 export const IndexNavigator = () => {
   return (
     <Stack.Navigator
@@ -13,8 +19,8 @@ export const IndexNavigator = () => {
           backgroundColor: 'white',
         },
       }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Detail" component={DetailScreen} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="DetailScreen" component={DetailScreen} />
     </Stack.Navigator>
   );
 };
