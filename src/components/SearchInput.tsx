@@ -1,10 +1,22 @@
 import React from 'react';
-import {Platform, StyleSheet, Text, TextInput, View} from 'react-native';
+import {
+  Platform,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  ViewStyle,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export const SearchInput = () => {
+interface Props {
+  style?: StyleProp<ViewStyle>;
+}
+
+export const SearchInput = ({style}: Props) => {
   return (
-    <View style={styles.pkdSearchContainer}>
+    <View style={{...styles.pkdSearchContainer, ...(style as any)}}>
       <View style={styles.pkdSearchContainer__Bg_Text}>
         <TextInput
           style={{
