@@ -35,8 +35,8 @@ export const DetailScreen = ({navigation, route}: Props) => {
         </TouchableOpacity>
 
         {/* Name */}
-        <Text style={{...styles.pkdDetailContainer__Name, top: +25}}>
-          {name + '\n'}#{id}
+        <Text style={{...styles.pkdDetailContainer__Name}}>
+          #{id} {name}
         </Text>
 
         {/* Pokebola */}
@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 40,
     alignSelf: 'flex-start',
-    left: 20,
+    left: '20%',
+    textTransform: 'capitalize',
   },
   pkdDetailContainer__Pokebola: {
     width: 250,

@@ -9,7 +9,7 @@ import {
 export const usePokemonPaginate = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [payloadPokemon, setPayloadPokemon] = useState<PayloadPokemon>([]);
-  const nextPageUrl = useRef('https://pokeapi.co/api/v2/pokemon?limit=40');
+  const nextPageUrl = useRef('https://pokeapi.co/api/v2/pokemon?limit=20');
 
   useEffect(() => {
     loadPokemons();

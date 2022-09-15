@@ -125,7 +125,7 @@ export const PokemonDetail = ({payload}: Props) => {
 const styles = StyleSheet.create({
   pkdContainer__Detail: {
     marginHorizontal: 20,
-    marginTop: 320,
+    marginTop: 350,
   },
   pkdContainer__Detail_Title: {
     fontSize: 36,
