@@ -1,9 +1,24 @@
 import React from 'react';
-import {ActivityIndicator, FlatList, Image, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  Platform,
+  Text,
+  View,
+} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {SearchInput} from '../components/SearchInput';
 export const SearchScreen = () => {
+  const {top} = useSafeAreaInsets();
   return (
-    <View>
-      <Text>Tag</Text>
+    <View
+      style={{
+        flex: 1,
+        marginTop: Platform.OS === 'ios' ? top : top + 10,
+        marginHorizontal: 20,
+      }}>
+      <SearchInput />
     </View>
   );
 };
