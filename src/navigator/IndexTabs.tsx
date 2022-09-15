@@ -26,6 +26,7 @@ export const IndexTabs = () => {
           position: 'absolute',
           backgroundColor: 'rgba(255,255,255,0.92)',
         },
+        headerShown: false,
       }}>
       <Tab.Screen
         options={{

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   Dimensions,
@@ -15,11 +15,30 @@ import {usePokemonSearch} from '../hooks/usePokemonSearch';
 import {styles} from '../theme/styles';
 import {PokemonCard} from '../components/PokemonCard';
 import {Loading} from '../components/Loading';
+import {PayloadPokemon} from '../interfaces/pokemonInterfaces';
+import {pokemonApi} from '../api/pokemonApi';
 
 export const SearchScreen = () => {
   const {top} = useSafeAreaInsets();
   const {isFetching, payloadSearchPokemon} = usePokemonSearch();
   const screenWidth = Dimensions.get('window').width;
+
+  const [payload, setPayload] = useState('');
+
+  const [filterPayload, setFilterPayload] = useState<PayloadPokemon[]>([]);
+
+  useEffect(() => {
+    if (payload.length === 0) {
+      return setFilterPayload([]);
+    }
+
+    setFilterPayload(
+      payloadSearchPokemon.filter(pokemon =>
+        pokemon.name.toLocaleLowerCase().includes(payload.toLocaleLowerCase()),
+      ),
+    );
+  }, [payload]);
+
   if (isFetching) {
     return <Loading />;
   }
@@ -31,6 +50,7 @@ export const SearchScreen = () => {
         marginHorizontal: 20,
       }}>
       <SearchInput
+        onDebounce={value => setPayload(value)}
         style={{
           position: 'absolute',
           zIndex: 999,
@@ -43,7 +63,7 @@ export const SearchScreen = () => {
           alignItems: 'center',
         }}>
         <FlatList
-          data={payloadSearchPokemon}
+          data={filterPayload}
           keyExtractor={pokemon => pokemon.id}
           showsVerticalScrollIndicator={false}
           numColumns={2}
@@ -56,7 +76,7 @@ export const SearchScreen = () => {
                 marginBottom: top + 40,
                 marginTop: Platform.OS === 'ios' ? top + 60 : top + 80,
               }}>
-              Pokedex
+              {payload}
             </Text>
           }
           renderItem={({item}) => <PokemonCard pokemon={item} />}
