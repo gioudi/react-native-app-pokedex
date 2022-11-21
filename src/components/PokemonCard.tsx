@@ -28,6 +28,7 @@ export const PokemonCard = ({pokemon}: Props) => {
     return () => {
       isMounted.current = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getColorsPokemons = async () => {

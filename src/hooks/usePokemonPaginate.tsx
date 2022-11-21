@@ -8,11 +8,13 @@ import {
 
 export const usePokemonPaginate = () => {
   const [isLoading, setIsLoading] = useState(true);
+
   const [payloadPokemon, setPayloadPokemon] = useState<PayloadPokemon>([]);
   const nextPageUrl = useRef('https://pokeapi.co/api/v2/pokemon?limit=20');
 
   useEffect(() => {
     loadPokemons();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadPokemons = async () => {

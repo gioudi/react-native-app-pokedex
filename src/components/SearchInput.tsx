@@ -3,7 +3,6 @@ import {
   Platform,
   StyleProp,
   StyleSheet,
-  Text,
   TextInput,
   View,
   ViewStyle,
@@ -12,6 +11,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useDebounceValue} from '../hooks/useDebounceValue';
 
 interface Props {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   onDebounce: (value: string) => void;
   style?: StyleProp<ViewStyle>;
 }
@@ -22,6 +23,7 @@ export const SearchInput = ({style, onDebounce}: Props) => {
 
   useEffect(() => {
     onDebounce(debouncedValue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedValue]);
 
   return (

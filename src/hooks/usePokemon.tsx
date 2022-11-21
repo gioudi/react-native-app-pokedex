@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {pokemonApi} from '../api/pokemonApi';
 import {DetailPokemon} from '../interfaces/pokemonInterfaces';
 
@@ -14,6 +14,7 @@ export const usePokemon = (id: string) => {
   };
   useEffect(() => {
     loadPokemon();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
