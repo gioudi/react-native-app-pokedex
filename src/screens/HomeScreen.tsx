@@ -1,13 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  ActivityIndicator,
-  Dimensions,
-  FlatList,
-  Image,
-  Platform,
-  Text,
-  View,
-} from 'react-native';
+import {Dimensions, FlatList, Image, Platform, Text, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Loading} from '../components/Loading';
 import {PokemonCard} from '../components/PokemonCard';
@@ -44,6 +36,7 @@ export const HomeScreen = () => {
         payloadSearchPokemon.filter(pokemon => pokemon.id === payload),
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [payload]);
 
   if (isFetching) {

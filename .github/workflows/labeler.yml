@@ -1,0 +1,17 @@
+name: Multi Labeler
+
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+    types: [opened, edited, reopened, synchronize]
+
+jobs:
+  labeler:
+    name: Labeler
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fuxingloh/multi-labeler@v1
+        with:
+          config-path: .github/labeler.yml

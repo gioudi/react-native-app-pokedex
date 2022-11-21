@@ -1,10 +1,9 @@
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {pokemonApi} from '../api/pokemonApi';
 import {
   PayloadPokemon,
   PayloadPokemons,
   Result,
-  SearchPayload,
 } from '../interfaces/pokemonInterfaces';
 
 export const usePokemonSearch = () => {
@@ -14,6 +13,7 @@ export const usePokemonSearch = () => {
 
   useEffect(() => {
     loadPokemons();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadPokemons = async () => {

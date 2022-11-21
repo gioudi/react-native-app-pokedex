@@ -10,7 +10,6 @@ import {
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParams} from '../navigator/IndexNavigator';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {FadeInImage} from '../components/FadeInImage';
 import {usePokemon} from '../hooks/usePokemon';
 import {PokemonDetail} from '../components/PokemonDetail';
@@ -20,7 +19,6 @@ interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> {}
 export const DetailScreen = ({navigation, route}: Props) => {
   const {payloadPokemon, color} = route.params;
   const {name, id, picture} = payloadPokemon;
-  const top = useSafeAreaInsets();
   const {pokemon, isLoading} = usePokemon(id);
   return (
     <View style={{flex: 1}}>
